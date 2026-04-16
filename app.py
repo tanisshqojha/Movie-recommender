@@ -19,7 +19,14 @@ st.markdown(
 
 # Load data
 new_df = pickle.load(open('movies.pkl','rb'))
-similarity = pickle.load(open('similarity.pkl','rb'))
+# similarity = pickle.load(open('similarity.pkl','rb'))
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+cv = CountVectorizer(max_features=5000, stop_words='english')
+vectors = cv.fit_transform(new_df['tags']).toarray()
+
+similarity = cosine_similarity(vectors)
 
 # Title
 st.markdown("<h1 style='text-align: center; color: #E50914;'>🎬 Movie Recommender System</h1>", unsafe_allow_html=True)
