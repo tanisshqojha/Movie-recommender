@@ -101,8 +101,12 @@ def recommend(movie):
     
     movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
     
+    recommended_movies = []
+    
     for i in movies_list:
-        print(new_df.iloc[i[0]].title)
+        recommended_movies.append(new_df.iloc[i[0]].title)
+        
+    return recommended_movies
 
 # Testing it recommend('American Pie')
 # Running app
